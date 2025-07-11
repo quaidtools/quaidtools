@@ -98,6 +98,7 @@
             color: var(--white);
             font-size: 24px;
             cursor: pointer;
+            z-index: 101;
         }
         
         nav ul {
@@ -191,6 +192,9 @@
             transition: all 0.3s;
             border: 2px solid var(--matrix-green);
             font-size: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .secondary-btn {
@@ -203,6 +207,9 @@
             transition: all 0.3s;
             border: 2px solid var(--matrix-green);
             font-size: 18px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
         
         .primary-btn:hover, .secondary-btn:hover {
@@ -275,6 +282,12 @@
         .pdf-icon { color: #ff5555; }
         .password-icon { color: #55aaff; }
         .qr-icon { color: #55ffaa; }
+        .age-icon { color: #ffcc00; }
+        .image-icon { color: #ff55ff; }
+        .text-icon { color: #55ffff; }
+        .calculator-icon { color: #ffff55; }
+        .color-icon { color: #ffaa55; }
+        .time-icon { color: #aa55ff; }
         
         .tool-info {
             padding: 25px;
@@ -396,28 +409,46 @@
             background-color: rgba(20, 20, 20, 0.8);
             border-radius: 8px;
             padding: 40px 30px;
-            transition: all 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             border: 1px solid rgba(0, 255, 65, 0.1);
             text-align: center;
+            position: relative;
+            overflow: hidden;
         }
         
         .pricing-card.featured {
             border: 2px solid var(--matrix-green);
             transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(0, 255, 65, 0.2);
+        }
+        
+        .pricing-card.featured::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: 20px;
+            right: -30px;
+            background-color: var(--matrix-green);
+            color: var(--black);
+            padding: 5px 30px;
+            font-weight: 700;
+            transform: rotate(45deg);
+            font-size: 14px;
         }
         
         .pricing-card.featured:hover {
             transform: scale(1.08);
+            box-shadow: 0 0 40px rgba(0, 255, 65, 0.3);
         }
         
         .pricing-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 255, 65, 0.2);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 255, 65, 0.2);
             border-color: rgba(0, 255, 65, 0.3);
         }
         
         .pricing-header {
             margin-bottom: 30px;
+            position: relative;
         }
         
         .pricing-header h4 {
@@ -431,6 +462,24 @@
             color: var(--matrix-green);
             font-weight: 700;
             margin-bottom: 10px;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .price::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: rgba(0, 255, 65, 0.5);
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+        
+        .pricing-card:hover .price::after {
+            transform: scaleX(1);
         }
         
         .price span {
@@ -451,6 +500,11 @@
             padding: 10px 0;
             color: #ccc;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s;
+        }
+        
+        .pricing-card:hover .pricing-features ul li {
+            color: var(--white);
         }
         
         .pricing-features ul li:last-child {
@@ -460,6 +514,11 @@
         .pricing-features ul li i {
             color: var(--matrix-green);
             margin-right: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .pricing-card:hover .pricing-features ul li i {
+            transform: scale(1.2);
         }
         
         /* Footer */
@@ -515,6 +574,12 @@
             color: var(--matrix-green);
         }
         
+        .footer-tools-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+        }
+        
         .social-links {
             display: flex;
             gap: 15px;
@@ -552,12 +617,25 @@
         canvas {
             display: block;
         }
-
+        
+        /* Mobile Menu Overlay */
+        .mobile-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 99;
+            display: none;
+            backdrop-filter: blur(5px);
+        }
+        
         /* Mobile Responsiveness */
         @media (max-width: 900px) {
             .header-container {
-                flex-direction: column;
-                align-items: flex-start;
+                flex-direction: row;
+                align-items: center;
             }
             
             .menu-toggle {
@@ -568,24 +646,56 @@
             }
             
             nav {
-                width: 100%;
-                display: none;
-                margin-top: 20px;
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: 100vh;
+                background-color: rgba(0, 0, 0, 0.95);
+                backdrop-filter: blur(10px);
+                z-index: 100;
+                transition: right 0.3s ease-in-out;
+                padding-top: 80px;
+                overflow-y: auto;
             }
             
             nav.active {
-                display: block;
+                right: 0;
             }
             
             nav ul {
                 flex-direction: column;
-                gap: 15px;
+                gap: 0;
                 align-items: flex-start;
-                padding: 20px 0;
+                padding: 0 20px;
+            }
+            
+            nav ul li {
+                width: 100%;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            }
+            
+            nav ul li a {
+                display: block;
+                padding: 15px 0;
+                width: 100%;
+                font-size: 18px;
+            }
+            
+            nav ul li a::after {
+                display: none;
+            }
+            
+            .signup-btn {
+                margin: 20px 0;
+                width: 100%;
+                text-align: center;
+                display: block;
             }
             
             .hero {
-                padding: 80px 0 60px;
+                padding: 80px 0 40px;
             }
             
             .cta-buttons {
@@ -606,10 +716,111 @@
                 transform: scale(1);
             }
             
+            .pricing-card.featured::before {
+                top: 15px;
+                right: -25px;
+                padding: 3px 25px;
+                font-size: 12px;
+            }
+            
             .footer-content {
                 grid-template-columns: 1fr;
                 gap: 30px;
             }
+            
+            .footer-tools-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .tool-icon {
+                height: 150px;
+            }
+            
+            .tool-card, .feature-card, .pricing-card {
+                padding: 20px;
+            }
+            
+            .tool-info, .pricing-header, .pricing-features {
+                padding: 15px;
+            }
+            
+            .mobile-overlay.active {
+                display: block;
+            }
+            
+            body.menu-open {
+                overflow: hidden;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 60px 0 30px;
+            }
+            
+            .hero h2 {
+                font-size: clamp(28px, 7vw, 36px);
+            }
+            
+            .hero p {
+                font-size: clamp(16px, 4vw, 18px);
+                margin-bottom: 30px;
+            }
+            
+            .section-header h3 {
+                font-size: clamp(26px, 6vw, 32px);
+            }
+            
+            .section-header p {
+                font-size: clamp(14px, 4vw, 16px);
+            }
+            
+            .tool-info h4, .feature-card h4, .pricing-header h4 {
+                font-size: 20px;
+            }
+            
+            .tool-info p, .feature-card p {
+                font-size: 15px;
+            }
+            
+            .price {
+                font-size: 36px;
+            }
+            
+            .footer-column h4 {
+                font-size: 18px;
+            }
+            
+            .footer-column ul li a {
+                font-size: 15px;
+            }
+            
+            .footer-bottom p {
+                font-size: 14px;
+                padding: 0 10px;
+            }
+        }
+        
+        /* Touch-friendly elements */
+        button, .signup-btn, .primary-btn, .secondary-btn, .tool-action, a {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+        }
+        
+        /* Prevent horizontal scroll */
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        /* Responsive font sizes */
+        h1, h2, h3, h4, h5, h6 {
+            line-height: 1.2;
+        }
+        
+        /* Form elements */
+        input, textarea, button, select {
+            font-size: 16px;
         }
     </style>
 </head>
@@ -618,6 +829,9 @@
     <div class="matrix-bg">
         <canvas id="matrix"></canvas>
     </div>
+    
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-overlay" id="mobileOverlay"></div>
 
     <!-- Header -->
     <header>
@@ -628,17 +842,17 @@
             </a>
             
             <button class="menu-toggle" id="menuToggle">
-                <i class="fas fa-bars"></i>
+                <i class="fas fa-bars" id="menuIcon"></i>
             </button>
             
             <nav id="mainNav">
                 <ul>
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#tools">Tools</a></li>
+                    <li><a href="tools.html">Tools</a></li>
                     <li><a href="#features">Features</a></li>
                     <li><a href="#pricing">Pricing</a></li>
                     <li><a href="#about">About</a></li>
-                    <li><a href="#" class="signup-btn">Sign Up</a></li>
+                    <li><a href="sign-up.html" class="signup-btn">Sign Up</a></li>
                 </ul>
             </nav>
         </div>
@@ -650,18 +864,18 @@
             <h2>Essential Tools for Maximum Productivity</h2>
             <p>Access a powerful suite of free and premium tools designed to streamline your workflow and enhance your productivity</p>
             <div class="cta-buttons">
-                <a href="#tools" class="primary-btn">Explore Tools</a>
+                <a href="tools.html" class="primary-btn">Explore All Tools</a>
                 <a href="#pricing" class="secondary-btn">View Premium</a>
             </div>
         </div>
     </section>
 
     <!-- Popular Tools Section -->
-    <section class="tools-section" id="tools">
+    <section class="tools-section">
         <div class="container">
             <div class="section-header">
-                <h3>Popular Tools</h3>
-                <p>Discover our most-used tools by professionals worldwide</p>
+                <h3>Featured Tools</h3>
+                <p>Check out some of our most useful tools</p>
             </div>
             <div class="tools-grid">
                 <!-- PDF Tools Card -->
@@ -686,7 +900,7 @@
                         <span class="tool-tag free-tag">Free</span>
                         <h4>Password Generator</h4>
                         <p>Create strong, secure passwords with customizable length and complexity options.</p>
-                        <a href="#" class="tool-action">Use Tool</a>
+                        <a href="password-generator.html" class="tool-action">Use Tool</a>
                     </div>
                 </div>
                 
@@ -699,9 +913,12 @@
                         <span class="tool-tag free-tag">Free</span>
                         <h4>QR Generator</h4>
                         <p>Generate customizable QR codes for URLs, contact info, WiFi access and more.</p>
-                        <a href="#" class="tool-action">Use Tool</a>
+                        <a href="qr-generator.html" class="tool-action">Use Tool</a>
                     </div>
                 </div>
+            </div>
+            <div style="text-align: center; margin-top: 30px;">
+                <a href="tools.html" class="primary-btn" style="display: inline-block;">View All Tools</a>
             </div>
         </div>
     </section>
@@ -833,41 +1050,42 @@
                     <h4>Quaid Tools</h4>
                     <p>Essential tools to simplify your work and boost productivity.</p>
                     <div class="social-links">
-                        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
-                        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.facebook.com/quaidtools" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/quaidtools" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.youtube.com/@quaidtools" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                        <a href="https://www.pinterest.com/quaidtools" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
                     <h4>Tools</h4>
-                    <ul>
-                        <li><a href="#">PDF Tools</a></li>
-                        <li><a href="#">Password Generator</a></li>
-                        <li><a href="#">QR Generator</a></li>
-                        <li><a href="#">Image Converter</a></li>
-                        <li><a href="#">Text Utilities</a></li>
-                    </ul>
+                    <div class="footer-tools-grid">
+                        <ul>
+                            <li><a href="tools.html">All Tools</a></li>
+                            <li><a href="tools.html">Popular Tools</a></li>
+                            <li><a href="tools.html">New Tools</a></li>
+                            <li><a href="tools.html">Free Tools</a></li>
+                            <li><a href="tools.html">Premium Tools</a></li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="footer-column">
                     <h4>Company</h4>
                     <ul>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#">Careers</a></li>
-                        <li><a href="#">Blog</a></li>
-                        <li><a href="#">Press</a></li>
-                        <li><a href="#">Partners</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="press.html">Press</a></li>
+                        <li><a href="partners.html">Partners</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
                     <h4>Support</h4>
                     <ul>
-                        <li><a href="#">Help Center</a></li>
-                        <li><a href="#">Contact Us</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="help.html">Help Center</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                        <li><a href="faq.html">FAQ</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms-of-service.html">Terms of Service</a></li>
                     </ul>
                 </div>
             </div>
@@ -920,10 +1138,43 @@
 
         // Mobile menu toggle
         const menuToggle = document.getElementById('menuToggle');
+        const menuIcon = document.getElementById('menuIcon');
         const mainNav = document.getElementById('mainNav');
+        const mobileOverlay = document.getElementById('mobileOverlay');
+        const body = document.body;
         
         menuToggle.addEventListener('click', () => {
             mainNav.classList.toggle('active');
+            mobileOverlay.classList.toggle('active');
+            body.classList.toggle('menu-open');
+            
+            if (mainNav.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+        
+        // Close menu when clicking on overlay
+        mobileOverlay.addEventListener('click', () => {
+            mainNav.classList.remove('active');
+            mobileOverlay.classList.remove('active');
+            body.classList.remove('menu-open');
+            menuIcon.classList.remove('fa-times');
+            menuIcon.classList.add('fa-bars');
+        });
+        
+        // Close menu when clicking on nav links
+        document.querySelectorAll('#mainNav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mainNav.classList.remove('active');
+                mobileOverlay.classList.remove('active');
+                body.classList.remove('menu-open');
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            });
         });
 
         // Smooth scrolling for anchor links
@@ -940,6 +1191,10 @@
                     
                     // Close mobile menu if open
                     mainNav.classList.remove('active');
+                    mobileOverlay.classList.remove('active');
+                    body.classList.remove('menu-open');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
                 }
             });
         });
@@ -950,8 +1205,14 @@
             canvas.height = window.innerHeight;
         });
 
+        // Adjust animation for mobile devices
+        let intervalTime = 33;
+        if (window.innerWidth <= 900) {
+            intervalTime = 50; // Reduce frame rate on mobile for better performance
+        }
+        
         // Animation loop
-        setInterval(draw, 33);
+        setInterval(draw, intervalTime);
     </script>
 </body>
-    </html>
+</html>
