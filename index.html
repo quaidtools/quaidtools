@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quaid Tools - Powerful Tools for Your Work</title>
+    <title>Quaid Tools - Essential Tools for Productivity</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap" rel="stylesheet">
@@ -13,7 +13,6 @@
             --black: #000000;
             --white: #ffffff;
             --gray: #1a1a1a;
-            --primary: #2563eb;
             --matrix-green: #00ff41;
         }
         
@@ -53,49 +52,59 @@
         
         /* Header Styles */
         header {
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.9);
             box-shadow: 0 2px 10px rgba(0, 255, 65, 0.1);
             position: sticky;
             top: 0;
             z-index: 100;
             backdrop-filter: blur(5px);
+            padding: 15px 0;
         }
         
         .header-container {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 0;
+            flex-wrap: wrap;
         }
         
-        .logo {
+        .site-title {
             display: flex;
-            align-items: center;
-            gap: 15px;
+            flex-direction: column;
+            align-items: flex-start;
+            text-decoration: none;
         }
         
-        .logo-icon {
-            font-size: 32px;
-            color: var(--matrix-green);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background-color: rgba(0, 255, 65, 0.1);
-        }
-        
-        .logo h1 {
-            font-size: 24px;
+        .site-title .main-title {
+            font-size: 26px;
             font-weight: 700;
             color: var(--white);
+            line-height: 1;
+        }
+        
+        .site-title .sub-title {
+            font-size: 20px;
+            color: var(--white);
+            line-height: 1;
+            margin-top: 2px;
+            font-weight: 500;
+        }
+        
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 24px;
+            cursor: pointer;
         }
         
         nav ul {
             display: flex;
             list-style: none;
-            gap: 30px;
+            gap: 25px;
+            align-items: center;
         }
         
         nav ul li a {
@@ -103,10 +112,28 @@
             color: var(--white);
             font-weight: 500;
             transition: color 0.3s;
+            padding: 5px 0;
+            position: relative;
+            font-size: 17px;
         }
         
         nav ul li a:hover {
             color: var(--matrix-green);
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--matrix-green);
+            transition: width 0.3s;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
         }
         
         .signup-btn {
@@ -117,6 +144,7 @@
             font-weight: 600;
             transition: all 0.3s;
             border: 2px solid var(--matrix-green);
+            font-size: 16px;
         }
         
         .signup-btn:hover {
@@ -126,20 +154,21 @@
         
         /* Hero Section */
         .hero {
-            padding: 120px 0;
+            padding: 100px 0 80px;
             text-align: center;
             position: relative;
         }
         
         .hero h2 {
-            font-size: 48px;
+            font-size: clamp(36px, 6vw, 52px);
             margin-bottom: 20px;
             font-weight: 700;
             color: var(--white);
+            line-height: 1.2;
         }
         
         .hero p {
-            font-size: 20px;
+            font-size: clamp(18px, 3vw, 22px);
             max-width: 700px;
             margin: 0 auto 40px;
             color: #ccc;
@@ -149,40 +178,34 @@
             display: flex;
             justify-content: center;
             gap: 20px;
+            flex-wrap: wrap;
         }
         
         .primary-btn {
             background-color: var(--matrix-green);
             color: var(--black);
-            padding: 12px 30px;
+            padding: 14px 32px;
             border-radius: 5px;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s;
             border: 2px solid var(--matrix-green);
+            font-size: 18px;
         }
         
         .secondary-btn {
             background-color: transparent;
             color: var(--matrix-green);
-            padding: 12px 30px;
+            padding: 14px 32px;
             border-radius: 5px;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s;
             border: 2px solid var(--matrix-green);
+            font-size: 18px;
         }
         
-        .primary-btn:hover {
-            background-color: transparent;
-            color: var(--matrix-green);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 255, 65, 0.3);
-        }
-        
-        .secondary-btn:hover {
-            background-color: var(--matrix-green);
-            color: var(--black);
+        .primary-btn:hover, .secondary-btn:hover {
             transform: translateY(-3px);
             box-shadow: 0 5px 15px rgba(0, 255, 65, 0.3);
         }
@@ -202,7 +225,7 @@
         }
         
         .section-header h3 {
-            font-size: 36px;
+            font-size: clamp(32px, 4vw, 40px);
             margin-bottom: 15px;
             color: var(--white);
         }
@@ -211,11 +234,12 @@
             color: #ccc;
             max-width: 600px;
             margin: 0 auto;
+            font-size: clamp(16px, 3vw, 18px);
         }
         
         .tools-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
             margin-bottom: 40px;
         }
@@ -249,40 +273,37 @@
         }
         
         .pdf-icon { color: #ff5555; }
-        .image-icon { color: #55aaff; }
-        .password-icon { color: #ffaa55; }
+        .password-icon { color: #55aaff; }
         .qr-icon { color: #55ffaa; }
-        .text-icon { color: #aa55ff; }
-        .calculator-icon { color: #ff55aa; }
         
         .tool-info {
-            padding: 20px;
+            padding: 25px;
             flex-grow: 1;
             display: flex;
             flex-direction: column;
         }
         
         .tool-info h4 {
-            font-size: 20px;
-            margin-bottom: 10px;
+            font-size: 22px;
+            margin-bottom: 12px;
             color: var(--white);
         }
         
         .tool-info p {
             color: #aaa;
-            margin-bottom: 15px;
-            font-size: 14px;
+            margin-bottom: 20px;
+            font-size: 16px;
             flex-grow: 1;
         }
         
         .tool-tag {
             display: inline-block;
-            padding: 3px 8px;
+            padding: 4px 10px;
             background-color: var(--black);
             color: var(--white);
-            font-size: 12px;
+            font-size: 14px;
             border-radius: 4px;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         
         .free-tag {
@@ -293,28 +314,22 @@
             background-color: #FF5722;
         }
         
-        .see-more {
-            text-align: center;
-            margin-top: 30px;
-        }
-        
-        .see-more-btn {
+        .tool-action {
+            display: inline-block;
             background-color: transparent;
             color: var(--matrix-green);
-            padding: 12px 30px;
+            padding: 10px 20px;
             border-radius: 5px;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.3s;
             border: 2px solid var(--matrix-green);
-            display: inline-block;
+            text-align: center;
         }
         
-        .see-more-btn:hover {
+        .tool-action:hover {
             background-color: var(--matrix-green);
             color: var(--black);
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(0, 255, 65, 0.3);
         }
         
         /* Features Section */
@@ -324,9 +339,132 @@
             backdrop-filter: blur(5px);
         }
         
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .feature-card {
+            background-color: rgba(20, 20, 20, 0.8);
+            border-radius: 8px;
+            padding: 30px;
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 255, 65, 0.1);
+            text-align: center;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 255, 65, 0.2);
+            border-color: rgba(0, 255, 65, 0.3);
+        }
+        
+        .feature-card i {
+            font-size: 48px;
+            color: var(--matrix-green);
+            margin-bottom: 20px;
+        }
+        
+        .feature-card h4 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--white);
+        }
+        
+        .feature-card p {
+            color: #aaa;
+            font-size: 16px;
+        }
+        
+        /* Pricing Section */
+        .pricing-section {
+            padding: 80px 0;
+            background-color: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(5px);
+            border-top: 1px solid rgba(0, 255, 65, 0.1);
+            border-bottom: 1px solid rgba(0, 255, 65, 0.1);
+        }
+        
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .pricing-card {
+            background-color: rgba(20, 20, 20, 0.8);
+            border-radius: 8px;
+            padding: 40px 30px;
+            transition: all 0.3s;
+            border: 1px solid rgba(0, 255, 65, 0.1);
+            text-align: center;
+        }
+        
+        .pricing-card.featured {
+            border: 2px solid var(--matrix-green);
+            transform: scale(1.05);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: scale(1.08);
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 255, 65, 0.2);
+            border-color: rgba(0, 255, 65, 0.3);
+        }
+        
+        .pricing-header {
+            margin-bottom: 30px;
+        }
+        
+        .pricing-header h4 {
+            font-size: 24px;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+        
+        .price {
+            font-size: 42px;
+            color: var(--matrix-green);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        
+        .price span {
+            font-size: 18px;
+            color: #aaa;
+        }
+        
+        .pricing-features {
+            margin-bottom: 30px;
+        }
+        
+        .pricing-features ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .pricing-features ul li {
+            padding: 10px 0;
+            color: #ccc;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .pricing-features ul li:last-child {
+            border-bottom: none;
+        }
+        
+        .pricing-features ul li i {
+            color: var(--matrix-green);
+            margin-right: 10px;
+        }
+        
         /* Footer */
         footer {
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             color: var(--white);
             padding: 60px 0 30px;
             border-top: 1px solid rgba(0, 255, 65, 0.1);
@@ -341,7 +479,7 @@
         }
         
         .footer-column h4 {
-            font-size: 18px;
+            font-size: 20px;
             margin-bottom: 20px;
             position: relative;
             padding-bottom: 10px;
@@ -363,13 +501,14 @@
         }
         
         .footer-column ul li {
-            margin-bottom: 10px;
+            margin-bottom: 12px;
         }
         
         .footer-column ul li a {
             color: #aaa;
             text-decoration: none;
             transition: color 0.3s;
+            font-size: 16px;
         }
         
         .footer-column ul li a:hover {
@@ -406,12 +545,71 @@
             padding-top: 30px;
             border-top: 1px solid rgba(0, 255, 65, 0.1);
             color: #666;
-            font-size: 14px;
+            font-size: 15px;
         }
 
         /* Matrix animation styles */
         canvas {
             display: block;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 900px) {
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .menu-toggle {
+                display: block;
+                position: absolute;
+                top: 25px;
+                right: 20px;
+            }
+            
+            nav {
+                width: 100%;
+                display: none;
+                margin-top: 20px;
+            }
+            
+            nav.active {
+                display: block;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+                padding: 20px 0;
+            }
+            
+            .hero {
+                padding: 80px 0 60px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .primary-btn, .secondary-btn {
+                width: 100%;
+                text-align: center;
+            }
+            
+            .tools-grid, .features-grid, .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
         }
     </style>
 </head>
@@ -424,19 +622,22 @@
     <!-- Header -->
     <header>
         <div class="container header-container">
-            <div class="logo">
-                <div class="logo-icon">
-                    <i class="fas fa-tools"></i>
-                </div>
-                <h1>Quaid Tools</h1>
-            </div>
-            <nav>
+            <a href="index.html" class="site-title">
+                <span class="main-title">Quaid</span>
+                <span class="sub-title">Tools</span>
+            </a>
+            
+            <button class="menu-toggle" id="menuToggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            
+            <nav id="mainNav">
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Tools</a></li>
-                    <li><a href="#">Features</a></li>
-                    <li><a href="#">Pricing</a></li>
-                    <li><a href="#">About</a></li>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#tools">Tools</a></li>
+                    <li><a href="#features">Features</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                    <li><a href="#about">About</a></li>
                     <li><a href="#" class="signup-btn">Sign Up</a></li>
                 </ul>
             </nav>
@@ -444,26 +645,26 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="hero">
+    <section class="hero" id="home">
         <div class="container">
-            <h2>Powerful Tools to Simplify Your Work</h2>
-            <p>Access a wide range of free and premium tools designed to boost your productivity and make your work easier than ever before.</p>
+            <h2>Essential Tools for Maximum Productivity</h2>
+            <p>Access a powerful suite of free and premium tools designed to streamline your workflow and enhance your productivity</p>
             <div class="cta-buttons">
-                <a href="#" class="primary-btn">Get Started</a>
-                <a href="#" class="secondary-btn">Explore Tools</a>
+                <a href="#tools" class="primary-btn">Explore Tools</a>
+                <a href="#pricing" class="secondary-btn">View Premium</a>
             </div>
         </div>
     </section>
 
     <!-- Popular Tools Section -->
-    <section class="tools-section">
+    <section class="tools-section" id="tools">
         <div class="container">
             <div class="section-header">
                 <h3>Popular Tools</h3>
-                <p>Discover our most used tools by thousands of professionals worldwide</p>
+                <p>Discover our most-used tools by professionals worldwide</p>
             </div>
             <div class="tools-grid">
-                <!-- Tool Card 1 - PDF Tools -->
+                <!-- PDF Tools Card -->
                 <div class="tool-card">
                     <div class="tool-icon pdf-icon">
                         <i class="fas fa-file-pdf"></i>
@@ -472,11 +673,11 @@
                         <span class="tool-tag free-tag">Free</span>
                         <h4>PDF Tools</h4>
                         <p>Merge, split, compress, and convert PDF files with our comprehensive PDF toolkit.</p>
-                        <a href="pdf-tools.html" class="secondary-btn">Use Tool</a>
+                        <a href="pdf-tools.html" class="tool-action">Use Tool</a>
                     </div>
                 </div>
                 
-                <!-- Tool Card 2 - Password Generator -->
+                <!-- Password Generator Card -->
                 <div class="tool-card">
                     <div class="tool-icon password-icon">
                         <i class="fas fa-key"></i>
@@ -484,77 +685,143 @@
                     <div class="tool-info">
                         <span class="tool-tag free-tag">Free</span>
                         <h4>Password Generator</h4>
-                        <p>Create strong, secure passwords with customizable length and complexity.</p>
-                        <a href="#" class="secondary-btn">Use Tool</a>
+                        <p>Create strong, secure passwords with customizable length and complexity options.</p>
+                        <a href="#" class="tool-action">Use Tool</a>
                     </div>
                 </div>
                 
-                <!-- Tool Card 3 - QR Code Generator -->
+                <!-- QR Generator Card -->
                 <div class="tool-card">
                     <div class="tool-icon qr-icon">
                         <i class="fas fa-qrcode"></i>
                     </div>
                     <div class="tool-info">
                         <span class="tool-tag free-tag">Free</span>
-                        <h4>QR Code Generator</h4>
+                        <h4>QR Generator</h4>
                         <p>Generate customizable QR codes for URLs, contact info, WiFi access and more.</p>
-                        <a href="#" class="secondary-btn">Use Tool</a>
+                        <a href="#" class="tool-action">Use Tool</a>
                     </div>
                 </div>
-                
-                <!-- Tool Card 4 - Text Utilities -->
-                <div class="tool-card">
-                    <div class="tool-icon text-icon">
-                        <i class="fas fa-font"></i>
-                    </div>
-                    <div class="tool-info">
-                        <span class="tool-tag free-tag">Free</span>
-                        <h4>Text Utilities</h4>
-                        <p>Case converter, word counter, text reverser, and other text manipulation tools.</p>
-                        <a href="#" class="secondary-btn">Use Tool</a>
-                    </div>
-                </div>
-                
-                <!-- Tool Card 5 - Image Converter -->
-                <div class="tool-card">
-                    <div class="tool-icon image-icon">
-                        <i class="fas fa-image"></i>
-                    </div>
-                    <div class="tool-info">
-                        <span class="tool-tag free-tag">Free</span>
-                        <h4>Image Converter</h4>
-                        <p>Convert between JPG, PNG, WEBP, and other image formats with ease.</p>
-                        <a href="#" class="secondary-btn">Use Tool</a>
-                    </div>
-                </div>
-                
-                <!-- Tool Card 6 - Calculator -->
-                <div class="tool-card">
-                    <div class="tool-icon calculator-icon">
-                        <i class="fas fa-calculator"></i>
-                    </div>
-                    <div class="tool-info">
-                        <span class="tool-tag free-tag">Free</span>
-                        <h4>Advanced Calculator</h4>
-                        <p>Scientific calculator with history, memory functions, and unit conversions.</p>
-                        <a href="#" class="secondary-btn">Use Tool</a>
-                    </div>
-                </div>
-            </div>
-            <div class="see-more">
-                <a href="#" class="see-more-btn">See More Tools</a>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="features-section">
+    <section class="features-section" id="features">
         <div class="container">
             <div class="section-header">
-                <h3>Why Choose Quaid Tools?</h3>
-                <p>We provide the best tools to help you work smarter, not harder</p>
+                <h3>Powerful Features</h3>
+                <p>Why professionals choose Quaid Tools for their daily workflow</p>
             </div>
-            <!-- Features content would go here -->
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-bolt"></i>
+                    <h4>Lightning Fast</h4>
+                    <p>Our tools process your files in seconds, saving you valuable time on repetitive tasks.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-shield-alt"></i>
+                    <h4>Secure & Private</h4>
+                    <p>All processing happens locally - your files never leave your device.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-sync-alt"></i>
+                    <h4>Regular Updates</h4>
+                    <p>We continuously improve our tools with new features and enhancements.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h3>Simple Pricing</h3>
+                <p>Choose the plan that works best for your needs</p>
+            </div>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h4>Free Plan</h4>
+                        <div class="price">$0 <span>/month</span></div>
+                        <p>Perfect for individuals</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> Access to basic tools</li>
+                            <li><i class="fas fa-check"></i> 5 operations per day</li>
+                            <li><i class="fas fa-check"></i> Standard processing speed</li>
+                            <li><i class="fas fa-times"></i> Priority support</li>
+                            <li><i class="fas fa-times"></i> Premium tools</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="tool-action">Get Started</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="pricing-header">
+                        <h4>Pro Plan</h4>
+                        <div class="price">$9 <span>/month</span></div>
+                        <p>Best for professionals</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> All basic tools</li>
+                            <li><i class="fas fa-check"></i> Unlimited operations</li>
+                            <li><i class="fas fa-check"></i> Faster processing</li>
+                            <li><i class="fas fa-check"></i> Priority support</li>
+                            <li><i class="fas fa-check"></i> Premium tools access</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="primary-btn">Get Started</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h4>Team Plan</h4>
+                        <div class="price">$25 <span>/month</span></div>
+                        <p>For teams & businesses</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> All Pro features</li>
+                            <li><i class="fas fa-check"></i> 5 team members</li>
+                            <li><i class="fas fa-check"></i> Centralized billing</li>
+                            <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                            <li><i class="fas fa-check"></i> Custom integrations</li>
+                        </ul>
+                    </div>
+                    <a href="#" class="tool-action">Get Started</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="features-section" id="about">
+        <div class="container">
+            <div class="section-header">
+                <h3>About Quaid Tools</h3>
+                <p>Our mission is to simplify complex tasks for everyone</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <i class="fas fa-rocket"></i>
+                    <h4>Our Journey</h4>
+                    <p>Founded in 2023, Quaid Tools started with a simple goal: create tools that eliminate productivity barriers.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-users"></i>
+                    <h4>Our Team</h4>
+                    <p>We're a dedicated team of developers, designers, and productivity enthusiasts.</p>
+                </div>
+                <div class="feature-card">
+                    <i class="fas fa-heart"></i>
+                    <h4>Our Philosophy</h4>
+                    <p>We believe powerful tools should be accessible, intuitive, and respect user privacy.</p>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -564,33 +831,33 @@
             <div class="footer-content">
                 <div class="footer-column">
                     <h4>Quaid Tools</h4>
-                    <p>Powerful tools to simplify your work and boost productivity.</p>
+                    <p>Essential tools to simplify your work and boost productivity.</p>
                     <div class="social-links">
                         <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
                         <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
-                        <a href="#" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     </div>
-                </div>
-                <div class="footer-column">
-                    <h4>Quick Links</h4>
-                    <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Tools</a></li>
-                        <li><a href="#">Features</a></li>
-                        <li><a href="#">Pricing</a></li>
-                        <li><a href="#">About Us</a></li>
-                    </ul>
                 </div>
                 <div class="footer-column">
                     <h4>Tools</h4>
                     <ul>
-                        <li><a href="#">All Tools</a></li>
-                        <li><a href="#">Free Tools</a></li>
-                        <li><a href="#">Premium Tools</a></li>
-                        <li><a href="#">New Tools</a></li>
-                        <li><a href="#">Popular Tools</a></li>
+                        <li><a href="#">PDF Tools</a></li>
+                        <li><a href="#">Password Generator</a></li>
+                        <li><a href="#">QR Generator</a></li>
+                        <li><a href="#">Image Converter</a></li>
+                        <li><a href="#">Text Utilities</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Press</a></li>
+                        <li><a href="#">Partners</a></li>
                     </ul>
                 </div>
                 <div class="footer-column">
@@ -605,7 +872,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 Quaid Tools. All rights reserved.</p>
+                <p>&copy; 2023 Quaid Tools. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--matrix-green);"></i> for productivity</p>
             </div>
         </div>
     </footer>
@@ -619,49 +886,63 @@
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
 
-        // Matrix characters - taken from the Katakana charset
+        // Matrix characters
         const matrixChars = "アァカサタナハマヤャラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン";
-        
-        // Convert string to array of single characters
         const chars = matrixChars.split('');
 
         const fontSize = 14;
         const columns = canvas.width / fontSize;
 
-        // Array of drops - one per column
+        // Array of drops
         const drops = [];
         for (let i = 0; i < columns; i++) {
-            drops[i] = 1;
+            drops[i] = Math.floor(Math.random() * canvas.height);
         }
 
         // Drawing the characters
         function draw() {
-            // Black BG for the canvas
-            // Translucent BG to show trail
             ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            ctx.fillStyle = '#00ff41'; // Green text
+            ctx.fillStyle = '#00ff41';
             ctx.font = fontSize + 'px monospace';
             
-            // Loop over drops
             for (let i = 0; i < drops.length; i++) {
-                // Random character to print
                 const text = chars[Math.floor(Math.random() * chars.length)];
-                
-                // x = i*fontSize, y = value of drops[i]*fontSize
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
                 
-                // Sending the drop back to the top randomly after it has crossed the screen
-                // Adding randomness to the reset to make the drops scattered on the Y axis
                 if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                     drops[i] = 0;
                 }
-                
-                // Increment Y coordinate
                 drops[i]++;
             }
         }
+
+        // Mobile menu toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+        
+        menuToggle.addEventListener('click', () => {
+            mainNav.classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    mainNav.classList.remove('active');
+                }
+            });
+        });
 
         // Update canvas size when window is resized
         window.addEventListener('resize', () => {
@@ -673,4 +954,4 @@
         setInterval(draw, 33);
     </script>
 </body>
-</html>
+    </html>
